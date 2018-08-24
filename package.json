@@ -1,0 +1,30 @@
+{
+  "name": "my-orm",
+  "version": "1.0.0",
+  "description": "a very lightweight mysql orm library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yedf/handy.git"
+  },
+  "keywords": [
+    "mysql",
+    "orm"
+  ],
+  "author": "dongfuye@163.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yedf/handy/issues"
+  },
+  "homepage": "https://github.com/yedf/handy#readme",
+  "dependencies": {
+    "@types/node": "^10.9.1",
+    "@types/underscore": "^1.8.9",
+    "date-format-lite": "^17.7.0",
+    "mysql2": "^1.6.1",
+    "underscore": "^1.9.1"
+  }
+}

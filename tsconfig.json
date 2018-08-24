@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "rootDir":".",
+    "outDir":".",
+    "noLib":false,
+    "sourceMap": true,
+    "allowJs": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "plugins": [
+      {
+          "name": "tslint-language-service",
+          "alwaysShowRuleFailuresAsWarnings": false,
+          "ignoreDefinitionFiles": true
+          //"configFile": "../tslint.json",
+          //"disableNoUnusedVariableRule": false
+      }
+  ]
+},
+  "exclude":[
+    "index.js",
+    "node_modules",
+    ".idea",
+    "dist",
+    ".git"
+  ]
+}
