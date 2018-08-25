@@ -9,11 +9,22 @@ a very lightweight mysql orm library
 npm install my-orm --save
 ```
 
+### js
+```
+let {Mysql} = require('../my-orm')
+
+// ...
+  let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
+  let r = await mysql.query(`select * from test_book`)
+
+```
+
+### typscript
 ```
 import {Mysql, Page} from 'my-orm'
 
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
-  let r = await mysql.find('test_book') // 获取test_book表的所有内容
+  let r = await mysql.find('test_book')
 ```
 
 ## run test

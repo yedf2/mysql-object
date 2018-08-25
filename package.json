@@ -2,7 +2,8 @@
   "name": "my-orm",
   "version": "1.0.0",
   "description": "a very lightweight mysql orm library",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "ts-node test.ts",
     "start": "npm run test"

@@ -1,7 +1,7 @@
 import { Mysql, Pager } from './index'
 
 (async function main() {
-  let mysql: Mysql = Mysql.create(JSON.parse(process.env.MYSQL))
+  let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
   let r: any = null
   // 返回数组
   r = await mysql.query(`select * from test_book`)

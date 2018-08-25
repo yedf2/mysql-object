@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2017",
@@ -7,10 +8,10 @@
     "noImplicitAny": false,
     "removeComments": false,
     "rootDir":".",
-    "outDir":".",
+    "outDir":"dist",
     "noLib":false,
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "baseUrl": "src",
     "paths": {
       "@/*": ["./*"]
