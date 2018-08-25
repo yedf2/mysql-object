@@ -13,15 +13,14 @@ npm install mysql-object --save
 ```
 let {Mysql} = require('../mmysql-object')
 
-// ...
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
   let r = await mysql.query(`select * from test_book`)
 
 ```
 
-### typscript
+### typescript
 ```
-import {Mysql, Page} from 'mysql-object'
+import {Mysql, Pager} from 'mysql-object'
 
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
   let r = await mysql.find('test_book')
@@ -30,7 +29,7 @@ import {Mysql, Page} from 'mysql-object'
 ## run test
 
 - run data.sql to setup your data
-- MYSQL=MYSQL='{"host":"xxx", "user":"xxx", "password":"xxx","database":"xxx"}' yarn test
+- MYSQL='{"host":"xxx", "user":"xxx", "password":"xxx","database":"xxx"}' yarn test
 
 ## detail usage
 
@@ -88,6 +87,7 @@ import { Mysql, Pager } from './index'
 
   r = await mysql.deleteWhere('test_book', { id: 26 })
 
+  // 表join的高级用法
   r = await mysql.find('test_book_author', {
     attributes: ['id', 'name'],
     // 包含test_book，test_book为一个对象，通过book_author表里的book_id能够找到对应的book
