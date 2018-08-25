@@ -1,17 +1,17 @@
-my-orm
+mysql-object
 ====
 
 a very lightweight mysql orm library
 
-不同于sequelize等orm，my-orm无需手动维护一份对象类型。my-orm着重于把update中的普通object，转成sql语句
+不同于sequelize等orm，mysql-object无需手动维护一份对象类型。my-orm着重于把update中的普通object，转成sql语句
 ## usage
 ```
-npm install my-orm --save
+npm install mysql-object --save
 ```
 
 ### js
 ```
-let {Mysql} = require('../my-orm')
+let {Mysql} = require('../mmysql-object')
 
 // ...
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
@@ -21,7 +21,7 @@ let {Mysql} = require('../my-orm')
 
 ### typscript
 ```
-import {Mysql, Page} from 'my-orm'
+import {Mysql, Page} from 'mysql-object'
 
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
   let r = await mysql.find('test_book')

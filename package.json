@@ -1,6 +1,6 @@
 {
     "name": "mysql-object",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "a very lightweight mysql orm library",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/yedf/handy.git"
+        "url": "git+https://github.com/yedf/mysql-object.git"
     },
     "keywords": [
         "mysql",
@@ -19,9 +19,9 @@
     "author": "dongfuye@163.com",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/yedf/handy/issues"
+        "url": "https://github.com/yedf/mysql-object/issues"
     },
-    "homepage": "https://github.com/yedf/handy#readme",
+    "homepage": "https://github.com/yedf/mysql-object#readme",
     "dependencies": {
         "@types/node": "^10.9.1",
         "@types/underscore": "^1.8.9",
