@@ -1,10 +1,15 @@
 import * as _ from 'underscore'
+let debug = require('debug')('mysql-object')
 require('date-format-lite')
 Date['masks']['default'] = 'YYYY-MM-DD hh:mm:ss'
 
-
 let createTime = 'create_time'
 let updateTime = 'update_time'
+
+export function setCreateUpdateField(createField = 'create_time', updateField = 'update_time') {
+  createTime = createField
+  updateTime = updateField
+}
 
 declare global {
   interface Date {
@@ -74,14 +79,14 @@ export class MysqlConn {
     this.dbstr = dbconf
     let my = require('mysql2')
     this.my = poolEnabled ? my.createPool(dbconf) : my.createConnection(dbconf)
-    console.log('connecting ', dbconf)
+    debug('connecting ', dbconf)
     if (!poolEnabled) return
     // pool类型的连接，需要单独弄一个心跳连接，不断检查连接情况，避免长时间空闲导致链接断开
     let heartbeatMy = my.createConnection(dbconf)
     const mysqlHeartbeat = () => {
       heartbeatMy.query('select 1', (err) => {
         if (err) throw err
-        console.log('heart beat to mysql')
+        debug('heart beat to mysql')
       })
     }
     mysqlHeartbeat()
@@ -273,14 +278,14 @@ export class Mysql {
   }
   async execute(obj, ...args): Promise<any> {
     let sql = obj.sql || obj
-    console.log('querying: ', printable(sql), args.length && printable(args) || '')
+    debug('querying: ', printable(sql), args.length && printable(args) || '')
     let begin = new Date().getTime()
     let rows = await this.queryInner(obj, ...args)
     let used = new Date().getTime() - begin
     if (rows instanceof Array) {
-      !sql.startsWith('desc') && console.log(`used ${used} ms total rows: ${rows.length} ${rows.length > 0 ? 'rows0: ' + printable(rows[0]) : ''}`)
+      !sql.startsWith('desc') && debug(`used ${used} ms total rows: ${rows.length} ${rows.length > 0 ? 'rows0: ' + printable(rows[0]) : ''}`)
     } else {
-      console.log(`used ${used} ms sql result is: `, JSON.stringify(rows))
+      debug(`used ${used} ms sql result is: `, JSON.stringify(rows))
     }
     return rows
   }
@@ -336,7 +341,7 @@ export class TransactionMysql extends Mysql {
     return new Promise<TransactionMysql>((resolve, reject) => {
       this.conn.my.beginTransaction(err => {
         if (err) {
-          console.log('begin transaction failed: ', err)
+          debug('begin transaction failed: ', err)
           reject(err)
         }
         resolve(this)
@@ -347,10 +352,10 @@ export class TransactionMysql extends Mysql {
     return new Promise((resolve, reject) => {
       this.conn.my.commit(err => {
         if (err) {
-          console.log('commit failed: ', err)
+          debug('commit failed: ', err)
           reject(err)
         }
-        console.log('commited')
+        debug('commited')
         resolve(this)
       })
     })
@@ -373,10 +378,10 @@ export class TransactionMysql extends Mysql {
     return new Promise((resolve, reject) => {
       this.conn.my.rollback(err => {
         if (err) {
-          console.log('rollback failed: ', err)
+          debug('rollback failed: ', err)
           reject(err)
         }
-        console.log('rollback ok')
+        debug('rollback ok')
         resolve(this)
       })
     })

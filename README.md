@@ -4,6 +4,13 @@ mysql-object
 a very lightweight mysql orm library
 
 不同于sequelize等orm，mysql-object无需手动维护一份对象类型。my-orm着重于把update中的普通object，转成sql语句
+
+400行左右的代码，支持特性包括：
+
+* 面向object的update
+* 可充分自定义的insert ignore/update
+* 自动维护的create_time update_time
+
 ## usage
 ```
 npm install mysql-object --save
@@ -14,7 +21,7 @@ npm install mysql-object --save
 let {Mysql} = require('../mmysql-object')
 
   let mysql = Mysql.create(JSON.parse(process.env.MYSQL))
-  let r = await mysql.query(`select * from test_book`)
+  let r = await mysql.find('test_book')
 
 ```
 
@@ -29,14 +36,15 @@ import {Mysql, Pager} from 'mysql-object'
 ## run test
 
 - run data.sql to setup your data
-- MYSQL='{"host":"xxx", "user":"xxx", "password":"xxx","database":"xxx"}' yarn test
+- MYSQL='{"host":"xxx", "user":"xxx", "password":"xxx","database":"xxx"}' npm test
 
 ## detail usage
 
 ```
-import { Mysql, Pager } from './index'
+import { Mysql, Pager, setCreateUpdateField } from './index'
 
 (async function main() {
+  setCreateUpdateField('create_time', 'update_time')
   let mysql: Mysql = Mysql.create(JSON.parse(process.env.MYSQL))
   let r: any = null
   // 返回数组
